@@ -1,0 +1,19 @@
+###################First Install Vundle##################
+Althought vundle is not necessary for installing YCM, it is a good idea to have vundle in case of maintaining plugins.
+Actually, I never installed YCM via vundle successfully. If I simply add the plugin YCM syntax in .vimrc, and install, the vim will constantly crush. It might be the python verion problem, which I will mention later.
+To install vundle, simply follow vundle git page. Should be easy and straightforward.
+
+#################Install YCM########################
+1. Read carefully the full installation instruction, rather than only Mac OS part.
+2. Do not adding a Plugin 'Valloric/YouCompleteMe' line to your vimrc. Use the other way: git submodule update --init --recursive
+3. Download the latest version of libclang, and unpack to some path, and have this path by hand.
+4. Compile using the command: cmake -G "<generator>" -DPATH_TO_LLVM_ROOT=the-unpacked-libclang-path . ~/the-correct-path/YouCompleteMe/third_party/ycmd/cpp
+5. run the command: cmake --build . --target ycm_core --config Release.
+6. add the following to .vimrc:
+set runtimepath+=~/gitRepo/YouCompleteMe
+filetype on
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_python_binary_path = '/Users/dq/installs/miniconda3/bin/python' "because have vim compiled against the Python3 interpreter
+
+ By now, YCM should work.
+ The last two lines above are used to resolve YCMServer crush issue. Because I compile YCM using python3, but YCM seems only to work with python2.
