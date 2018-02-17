@@ -1,0 +1,6 @@
+By default, TeXworks does not provide spell checking.
+There is no dictionary in TeXworks. 
+First, create a subfolder "dictionaries" under TeXworks resource path. The path can be found from the menu Help--Settings and Resources.
+Add the following two dictionary to the created subfolder:
+en_US.aff and en_US.dic
+Then select spell check from menu--Edit.
