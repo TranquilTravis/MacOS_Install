@@ -1,0 +1,23 @@
+1. first create a new environment:
+conda create -n dataScience python=3 pandas scikit-learn jupyter matplotlib
+
+2. activate the environment:
+source activate dataScience
+
+3. don't install tensorFLow using pip, because the version installed by tensorFLow won't optimize the performance of my CPU.
+If used pip for install, you should get the warning: Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.2 AVX AVX2 FMA
+
+4. build tensorFlow from the source, first instll bazel
+brew install bazel
+
+5. follow steps specified at:
+https://www.tensorflow.org/install/install_sources#PrepareMac 
+./configure # then following the default config process
+bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
+bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+pip install /tmp/tensorflow_pkg/tensorflow-1.6.0rc1-cp36-cp36m-macosx_10_7_x86_64.whl # substitute the last file with whatever inside the path
+
+done
+
+don't forget reinstall spyder under new environment, in order to use conda:
+conda install spyder
